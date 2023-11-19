@@ -1,0 +1,20 @@
+.chart {
+  background-color: rgb(65, 188, 195);
+  width: 1.8rem;
+  border: thin rgb(0, 0, 0);
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.1rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.number {
+  color: rgb(0, 0, 0);
+  display: flex;
+  font-weight: bold;
+  transform: rotateX(180deg);
+  margin: 0;
+}
