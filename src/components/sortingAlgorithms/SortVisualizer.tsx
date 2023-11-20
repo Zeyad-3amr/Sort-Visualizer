@@ -15,10 +15,10 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
   const [stop, setStop] = useState(false);
 
   useEffect(() => {
-    setArray(Array.from({ length: 10 }, () => Math.floor(Math.random() * 300)));
+    setArray(Array.from({ length: 30 }, () => Math.floor(Math.random() * 300)));
   }, []);
   const generateArrayHandler = () => {
-    const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 300));
+    const newArray = Array.from({ length: 30 }, () => Math.floor(Math.random() * 300));
     setArray(newArray);
   };
   const bar = document.getElementsByClassName(
