@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SortVisualizer } from './components/sortingAlgorithms/SortVisualizer';
 import classes from './App.module.css';
 const App: React.FC = () => {

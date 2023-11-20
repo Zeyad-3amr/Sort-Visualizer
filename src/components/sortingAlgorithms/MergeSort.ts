@@ -17,14 +17,12 @@ const Merge = (
   while (i <= mid && j <= end) {
     steps.push({ type: 'compare', value: [i, j] });
     if (newArray[i] <= newArray[j]) {
-      // steps.push({ type: 'swap', value: [k, i] });
       steps.push({ type: 'swap', value: [k, newArray[i]] });
 
       a[k] = newArray[i];
       steps.push({ type: 'done', value: [k, i] });
       i++;
     } else {
-      // steps.push({ type: 'swap', value: [k, j] });
       steps.push({ type: 'swap', value: [k, newArray[j]] });
 
       a[k] = newArray[j];
@@ -35,27 +33,21 @@ const Merge = (
   }
 
   while (i <= mid) {
-    // steps.push({ type: 'swap', value: [k, i] });
-
     steps.push({ type: 'swap', value: [k, newArray[i]] });
 
     a[k] = newArray[i];
 
     steps.push({ type: 'done', value: [k, i] });
 
-    // steps.push({ type: 'done', value: [k, i] });
-
     k++;
     i++;
   }
   while (j <= end) {
-    // steps.push({ type: 'swap', value: [k, j] });
     steps.push({ type: 'swap', value: [k, newArray[j]] });
 
     a[k] = newArray[j];
 
     steps.push({ type: 'done', value: [k, j] });
-    // steps.push({ type: 'done', value: [k, j] });
 
     k++;
     j++;
@@ -77,8 +69,6 @@ export const MergeSort = (
   MergeSort(a, newArray, start, mid, steps);
   MergeSort(a, newArray, mid + 1, end, steps);
   Merge(a, newArray, start, mid, end, steps);
-
-  console.log(a);
 
   return steps;
 };

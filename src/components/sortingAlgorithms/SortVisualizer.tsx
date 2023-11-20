@@ -39,8 +39,6 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
     const x: number[] = [];
     const newSteps = MergeSort(array, x, 0, array.length - 1);
 
-    console.log(newSteps);
-
     for (let k = 0; k < newSteps!.length; k++) {
       const { type, value } = newSteps![k];
 
@@ -88,8 +86,6 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
       await delay(speed);
     }
     setStop(false);
-
-    // setStop(false);
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////
