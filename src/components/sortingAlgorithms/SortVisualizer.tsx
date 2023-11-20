@@ -12,12 +12,13 @@ export interface SortVisualizerProps {}
 export const SortVisualizer: FC<SortVisualizerProps> = () => {
   const [array, setArray] = useState<number[]>([]);
   const [speed, setSpeed] = useState(25);
+  const [stop, setStop] = useState(false);
 
   useEffect(() => {
-    setArray(Array.from({ length: 40 }, () => Math.floor(Math.random() * 300)));
+    setArray(Array.from({ length: 10 }, () => Math.floor(Math.random() * 300)));
   }, []);
   const generateArrayHandler = () => {
-    const newArray = Array.from({ length: 40 }, () => Math.floor(Math.random() * 300));
+    const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 300));
     setArray(newArray);
   };
   const bar = document.getElementsByClassName(
@@ -57,7 +58,10 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
       }
     }
   };
+
   const B_QSortVisualizer = async (newSteps: any) => {
+    setStop(true);
+
     for (let k = 0; k < newSteps!.length; k++) {
       const {
         type,
@@ -83,6 +87,9 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
       }
       await delay(speed);
     }
+    setStop(false);
+
+    // setStop(false);
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////
@@ -90,8 +97,10 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
   ///////////////////////////////////////////////////////////////////////////////////////
 
   const BubbleSortHandler = async () => {
-    const newSteps = BubbleSort(array);
+    let x: number[] = [...array];
+    const newSteps = BubbleSort(x);
     await B_QSortVisualizer(newSteps);
+    setArray(x);
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////
@@ -99,8 +108,11 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
   ///////////////////////////////////////////////////////////////////////////////////////
 
   const QuickSortHandler = async () => {
-    const newSteps = QuickSort(array, 0, array.length - 1);
+    let x: number[] = [...array];
+
+    const newSteps = QuickSort(x, 0, x.length - 1);
     await B_QSortVisualizer(newSteps);
+    setArray(x);
   };
 
   return (
@@ -112,19 +124,19 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
       </div>
       <div className={cssclass.buttons}>
         <div className={cssclass.Sortbuttons}>
-          <button className={cssclass.btn} onClick={MergeSortHandler}>
+          <button className={cssclass.btn} onClick={MergeSortHandler} disabled={stop}>
             Merge Sort
           </button>
 
-          <button className={cssclass.btn} onClick={BubbleSortHandler}>
+          <button className={cssclass.btn} onClick={BubbleSortHandler} disabled={stop}>
             Bubble Sort
           </button>
-          <button className={cssclass.btn} onClick={QuickSortHandler}>
+          <button className={cssclass.btn} onClick={QuickSortHandler} disabled={stop}>
             Quick Sort
           </button>
         </div>
         <div>
-          <button className={cssclass.btn} onClick={generateArrayHandler}>
+          <button className={cssclass.btn} onClick={generateArrayHandler} disabled={stop}>
             Generate New Array
           </button>
 
