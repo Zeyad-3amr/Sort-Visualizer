@@ -38,7 +38,6 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
   const MergeSortHandler = async () => {
     const x: number[] = [];
     const newSteps = MergeSort(array, x, 0, array.length - 1);
-    setStop(true);
 
     for (let k = 0; k < newSteps!.length; k++) {
       const { type, value } = newSteps![k];
@@ -56,7 +55,6 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
         bar[value[0]].children[0].textContent = value[1];
       }
     }
-    setStop(false);
   };
 
   const B_QSortVisualizer = async (newSteps: any) => {
