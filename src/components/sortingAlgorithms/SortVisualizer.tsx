@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BubbleSort } from './BubbleSort';
+import { SelectionSort } from './SelectionSort';
 import { MergeSort } from './MergeSort';
 import { Charts } from '../Charts/Charts';
 import classes from '../Charts/Charts.module.css';
@@ -38,6 +38,7 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
   const MergeSortHandler = async () => {
     const x: number[] = [];
     const newSteps = MergeSort(array, x, 0, array.length - 1);
+    setStop(true);
 
     for (let k = 0; k < newSteps!.length; k++) {
       const { type, value } = newSteps![k];
@@ -55,6 +56,7 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
         bar[value[0]].children[0].textContent = value[1];
       }
     }
+    setStop(false);
   };
 
   const B_QSortVisualizer = async (newSteps: any) => {
@@ -89,12 +91,12 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
   };
 
   ///////////////////////////////////////////////////////////////////////////////////////
-  //Bubble Sort Handler
+  //Selection Sort Handler
   ///////////////////////////////////////////////////////////////////////////////////////
 
-  const BubbleSortHandler = async () => {
+  const SelectionSortHandler = async () => {
     let x: number[] = [...array];
-    const newSteps = BubbleSort(x);
+    const newSteps = SelectionSort(x);
     await B_QSortVisualizer(newSteps);
     setArray(x);
   };
@@ -124,8 +126,8 @@ export const SortVisualizer: FC<SortVisualizerProps> = () => {
             Merge Sort
           </button>
 
-          <button className={cssclass.btn} onClick={BubbleSortHandler} disabled={stop}>
-            Bubble Sort
+          <button className={cssclass.btn} onClick={SelectionSortHandler} disabled={stop}>
+            Selection Sort
           </button>
           <button className={cssclass.btn} onClick={QuickSortHandler} disabled={stop}>
             Quick Sort

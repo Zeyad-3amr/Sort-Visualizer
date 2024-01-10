@@ -5,7 +5,7 @@ interface Steps {
 
 export let steps: Steps[] = [];
 
-export const BubbleSort = (array: number[]): Steps[] => {
+export const SelectionSort = (array: number[]): Steps[] => {
   steps = [];
   for (let i = 0; i < array.length - 1; i++) {
     for (let j = i + 1; j < array.length; j++) {
